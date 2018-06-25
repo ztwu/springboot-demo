@@ -21,4 +21,29 @@ public class UserService {
         }catch (Exception e){}
         return user;
     }
+
+    public User findUserByName2(String name){
+        User user = null;
+        try{
+            user = userRepositoty.findByName(name);
+        }catch (Exception e){}
+        return user;
+    }
+
+    public User findUserByName3(String name,String password){
+        User user = null;
+        try{
+            user = userRepositoty.findByNameAndPassword(name,password);
+        }catch (Exception e){}
+        return user;
+    }
+
+    public void insertUser(User user){
+        userRepositoty.save(user);
+    }
+
+    public void insertUser(String name, String password){
+        userRepositoty.insertUser(name,password);
+    }
+
 }

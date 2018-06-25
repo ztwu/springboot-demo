@@ -32,4 +32,40 @@ public class UserController {
             return user.getId()+"/"+user.getName()+"/"+user.getPassword();
         else return "null";
     }
+
+    @RequestMapping(value = "/show2",method = RequestMethod.GET)
+    @ResponseBody
+    public String show2(@RequestParam(value = "name")String name){
+        User user = userService.findUserByName2(name);
+        if(null != user)
+            return user.getId()+"/"+user.getName()+"/"+user.getPassword();
+        else return "null";
+    }
+
+    @RequestMapping(value = "/show3",method = RequestMethod.GET)
+    @ResponseBody
+    public String show3(@RequestParam(value = "name")String name,@RequestParam(value = "password")String password){
+        User user = userService.findUserByName3(name,password);
+        if(null != user)
+            return user.getId()+"/"+user.getName()+"/"+user.getPassword();
+        else return "null";
+    }
+
+    @RequestMapping(value = "/add",method = RequestMethod.GET)
+    @ResponseBody
+    public String add(@RequestParam(value = "name")String name,@RequestParam(value = "password")String password){
+        User user = new User();
+        user.setName(name);
+        user.setPassword(password);
+        userService.insertUser(user);
+       return "用户添加成功";
+    }
+
+    @RequestMapping(value = "/add2",method = RequestMethod.GET)
+    @ResponseBody
+    public String add2(@RequestParam(value = "name")String name,@RequestParam(value = "password")String password){
+        userService.insertUser(name,password);
+        return "用户添加成功2";
+    }
+
 }
